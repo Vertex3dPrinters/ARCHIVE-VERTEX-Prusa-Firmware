@@ -686,8 +686,13 @@ uint8_t xyzcal_xycoords2point(int16_t x, int16_t y)
 
 //MK3
 #if ((MOTHERBOARD == BOARD_EINSY_1_0a))
+#if defined(HEATBED_CS)
+const int16_t xyzcal_point_xcoords[4] PROGMEM = {FL_PINDA_CAL_X_POSITION, FR_PINDA_CAL_X_POSITION, RR_PINDA_CAL_X_POSITION, RL_PINDA_CAL_X_POSITION};
+const int16_t xyzcal_point_ycoords[4] PROGMEM = {FL_PINDA_CAL_Y_POSITION, FR_PINDA_CAL_Y_POSITION, RR_PINDA_CAL_Y_POSITION, RL_PINDA_CAL_Y_POSITION};
+#else
 const int16_t xyzcal_point_xcoords[4] PROGMEM = {1200, 22000, 22000, 1200};
 const int16_t xyzcal_point_ycoords[4] PROGMEM = {600, 600, 19800, 19800};
+#endif
 #endif //((MOTHERBOARD == BOARD_EINSY_1_0a))
 
 //MK2.5
