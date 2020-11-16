@@ -819,6 +819,16 @@ float __attribute__ ((noinline)) CLAMP_median(float *shifts, uint8_t blocks, flo
     const constexpr float max_change = 0.5f; ///< avoids too fast changes (avoid oscillation)
     return CLAMP( median(shifts, blocks) * norm, -max_change, max_change);
 }
+//MK3
+#if ((MOTHERBOARD == BOARD_EINSY_1_0a))
+#if defined(HEATBED_CS)
+const int16_t xyzcal_point_xcoords[4] PROGMEM = {FL_PINDA_CAL_X_POSITION, FR_PINDA_CAL_X_POSITION, RR_PINDA_CAL_X_POSITION, RL_PINDA_CAL_X_POSITION};
+const int16_t xyzcal_point_ycoords[4] PROGMEM = {FL_PINDA_CAL_Y_POSITION, FR_PINDA_CAL_Y_POSITION, RR_PINDA_CAL_Y_POSITION, RL_PINDA_CAL_Y_POSITION};
+#else
+const int16_t xyzcal_point_xcoords[4] PROGMEM = {1200, 22000, 22000, 1200};
+const int16_t xyzcal_point_ycoords[4] PROGMEM = {600, 600, 19800, 19800};
+#endif
+#endif //((MOTHERBOARD == BOARD_EINSY_1_0a))
 
 /// Searches for circle iteratively
 /// Uses points on the perimeter. If point is high it pushes circle out of the center (shift or change of radius),
