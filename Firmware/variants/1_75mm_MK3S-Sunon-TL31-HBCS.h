@@ -658,6 +658,10 @@
 #define RL_PINDA_CAL_Y_POSITION 19800
 #define RR_PINDA_CAL_Y_POSITION 19800
 
+//values to be adapted to pass the selftest
+#define AXIS_MARGIN 60
+#define Y_OFFSET 8
+
 #define M600_TIMEOUT 600  //seconds
 
 //#define SUPPORT_VERBOSITY
