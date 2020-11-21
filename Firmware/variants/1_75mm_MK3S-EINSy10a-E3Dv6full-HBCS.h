@@ -640,9 +640,9 @@
 
 //float value from the edge of the bed until center of circle in mm, must be float
 #define FL_CAL_POINT_X_POSITION 37.f 
-#define FR_CAL_POINT_X_POSITION 152.f
+#define FR_CAL_POINT_X_POSITION 159.f
 #define RL_CAL_POINT_X_POSITION 37.f
-#define RR_CAL_POINT_X_POSITION 152.f
+#define RR_CAL_POINT_X_POSITION 159.f
 #define FL_CAL_POINT_Y_POSITION 47.4f
 #define FR_CAL_POINT_Y_POSITION 47.4f
 #define RL_CAL_POINT_Y_POSITION 162.4f
