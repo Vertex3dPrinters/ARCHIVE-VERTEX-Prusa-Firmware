@@ -663,10 +663,10 @@
 #define Y_OFFSET 8
 
 //values for mesh bed leveling
-#define MESH_BED_X0_CS = 2.f
-#define MESH_BED_Y0_CS = 9.4f
-#define MESH_BED_XN_CS = 138.f
-#define MESH_BED_YN_CS = 173.4f
+#define MESH_BED_X0_CS 2.f
+#define MESH_BED_Y0_CS 9.4f
+#define MESH_BED_XN_CS 138.f
+#define MESH_BED_YN_CS 173.4f
 
 
 #define M600_TIMEOUT 600  //seconds
