@@ -13,10 +13,10 @@
 
 #elif defined(HEATBED_CS)
 
-#define BED_X0 (2.f - BED_ZERO_REF_X) //1
-#define BED_Y0 (9.4f - BED_ZERO_REF_Y) //1
-#define BED_Xn (206.f - BED_ZERO_REF_X) //205
-#define BED_Yn (213.4f - BED_ZERO_REF_Y) //205
+#define BED_X0 (MESH_BED_X0_CS - BED_ZERO_REF_X) //1
+#define BED_Y0 (MESH_BED_Y0_CS - BED_ZERO_REF_Y) //1
+#define BED_Xn (MESH_BED_XN_CS - BED_ZERO_REF_X) //205
+#define BED_Yn (MESH_BED_YN_CS - BED_ZERO_REF_Y) //205
 
 #else
 
