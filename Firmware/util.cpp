@@ -613,13 +613,13 @@ void ip4_to_str(char* dest, uint8_t* IP)
 }
 
 void steel_sheet_check()
-{
+{ //sigue teniendo error al mostrar el texto en la pantalla
     const int8_t sheetNR = eeprom_read_byte(&(EEPROM_Sheets_base->active_sheet));
     char sheet[8];
     char *msgSteelSheet = NULL;
 	eeprom_read_block(sheet, EEPROM_Sheets_base->s[sheetNR].name, 7);
 	sheet[7] = '\0';
-    sprintf_P(msgSteelSheet, PSTR("Has been installed the Sheet %-7s ?"), sheet);
+    sprintf(msgSteelSheet, PSRT("Has been installed the Sheet %-7s ?"), sheet);
     if (lcd_show_fullscreen_message_yes_no_and_wait_P(msgSteelSheet, false, true) < 0)
         lcd_print_stop();
     lcd_update_enable(true);  
