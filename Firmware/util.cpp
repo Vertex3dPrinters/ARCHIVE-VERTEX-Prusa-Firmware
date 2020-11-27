@@ -608,10 +608,22 @@ else {
 void steel_sheet_check()
 {
     const int8_t sheetNR = eeprom_read_byte(&(EEPROM_Sheets_base->active_sheet));
-    char sheet[8];
-	eeprom_read_block(sheet, EEPROM_Sheets_base->s[sheetNR].name, 7);
-	sheet[7] = '\0';
-    lcd_display_message_fullscreen_P(_i(PSTR("You have configured the sheet %-7s, Continue?"),sheet));
-    lcd_wait_for_click_delay(MSG_PRINT_CHECKING_FAILED_TIMEOUT);
-    lcd_update_enable(true);  
+    const int8_t nextSheet = eeprom_next_initialized_sheet(sheetNR);
+    if ((nextSheet >= 0) && (sheetNR != nextSheet)) //only will check if there is more than one sheet stored on the eeprom
+	{
+        char sheet[8];
+        eeprom_read_block(sheet, EEPROM_Sheets_base->s[sheetNR].name, 7);
+	    sheet[7] = '\0';
+        char *msg;
+       /* lcd_update_enable(false);
+        lcd_clear();
+        lcd_printf_P(PSTR("You have selected"));
+        lcd_printf_P(PSTR("the sheet %-7s"),sheet);
+        lcd_printf_P(PSTR("Continue?"));
+        if (!lcd_wait_for_click_delay(MSG_PRINT_CHECKING_FAILED_TIMEOUT)) //wait for 30 seconds */
+        sprintf_P(msg,PSTR("Is the %-7s steel sheet the correct one?"), sheet);
+        if(lcd_show_fullscreen_message_yes_no_and_wait_P(msg,true,true)<=0)
+            lcd_print_stop(); //cancel the print if there is no click after 30 seconds
+        lcd_update_enable(true);
+    }  
 }
