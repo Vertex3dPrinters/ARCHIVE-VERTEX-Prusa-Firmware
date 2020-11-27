@@ -604,3 +604,14 @@ else {
      sPrinterName=_sPrinterName;
      }
 }
+
+void steel_sheet_check()
+{
+    const int8_t sheetNR = eeprom_read_byte(&(EEPROM_Sheets_base->active_sheet));
+    char sheet[8];
+	eeprom_read_block(sheet, EEPROM_Sheets_base->s[sheetNR].name, 7);
+	sheet[7] = '\0';
+    lcd_display_message_fullscreen_P(_i(PSTR("You have configured the sheet %-7s, Continue?"),sheet));
+    lcd_wait_for_click_delay(MSG_PRINT_CHECKING_FAILED_TIMEOUT);
+    lcd_update_enable(true);  
+}

@@ -109,4 +109,6 @@ void gcode_level_check(uint16_t nGcodeLevel);
 
 void fSetMmuMode(bool bMMu);
 
+void steel_sheet_check();
+
 #endif /* UTIL_H */
