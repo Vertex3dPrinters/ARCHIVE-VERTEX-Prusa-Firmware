@@ -609,9 +609,11 @@ void steel_sheet_check()
 {
     const int8_t sheetNR = eeprom_read_byte(&(EEPROM_Sheets_base->active_sheet));
     char sheet[8];
+    char *msgSteelSheet = NULL;
 	eeprom_read_block(sheet, EEPROM_Sheets_base->s[sheetNR].name, 7);
 	sheet[7] = '\0';
-    lcd_display_message_fullscreen_P(_i(PSTR("You have configured the sheet %-7s, Continue?"),sheet));
-    lcd_wait_for_click_delay(MSG_PRINT_CHECKING_FAILED_TIMEOUT);
+    sprintf_P(msgSteelSheet, PSTR("Has been installed the Sheet %-7s ?"), sheet);
+    if (lcd_show_fullscreen_message_yes_no_and_wait_P(msgSteelSheet, false, true) < 0)
+        lcd_print_stop();
     lcd_update_enable(true);  
 }
