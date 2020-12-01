@@ -19,7 +19,7 @@
 #define DEVELOPER
 
 // Printer name
-#define CUSTOM_MENDEL_NAME "MK3S CS V1"
+#define CUSTOM_MENDEL_NAME "VERTEX XL V1 Beta"
 
 // Electronics
 #define MOTHERBOARD BOARD_EINSY_1_0a
@@ -65,11 +65,11 @@
 #define MANUAL_Z_HOME_POS 0.2
 
 // Travel limits after homing
-#define X_MAX_POS 169
+#define X_MAX_POS 301.8
 #define X_MIN_POS 0
-#define Y_MAX_POS 170
-#define Y_MIN_POS -4 //orig -4
-#define Z_MAX_POS 210
+#define Y_MAX_POS 276
+#define Y_MIN_POS -17 //orig -17
+#define Z_MAX_POS 430
 #define Z_MIN_POS 0.15
 
 // Canceled home position
@@ -417,9 +417,9 @@
 
 // Mesh definitions
 #define MESH_MIN_X 24
-#define MESH_MAX_X 160
+#define MESH_MAX_X 275
 #define MESH_MIN_Y 6
-#define MESH_MAX_Y 170
+#define MESH_MAX_Y 270
 
 // Mesh upsample definition
 #define MESH_NUM_X_POINTS 7
@@ -639,34 +639,34 @@
 #define HEATBED_CS
 
 //float value from the edge of the bed until center of circle in mm, must be float
-#define FL_CAL_POINT_X_POSITION 37.f 
-#define FR_CAL_POINT_X_POSITION 159.f
-#define RL_CAL_POINT_X_POSITION 37.f
-#define RR_CAL_POINT_X_POSITION 159.f
-#define FL_CAL_POINT_Y_POSITION 47.4f
-#define FR_CAL_POINT_Y_POSITION 47.4f
-#define RL_CAL_POINT_Y_POSITION 162.4f
-#define RR_CAL_POINT_Y_POSITION 162.4f
+#define FL_CAL_POINT_X_POSITION 48.7f 
+#define FR_CAL_POINT_X_POSITION 294.7f
+#define RL_CAL_POINT_X_POSITION 48.7f
+#define RR_CAL_POINT_X_POSITION 294.7f
+#define FL_CAL_POINT_Y_POSITION 38.5f
+#define FR_CAL_POINT_Y_POSITION 38.5f
+#define RL_CAL_POINT_Y_POSITION 284.3f
+#define RR_CAL_POINT_Y_POSITION 284.3f
 
 //values for pinda position over calibration points
-#define FL_PINDA_CAL_X_POSITION 1200 
-#define FR_PINDA_CAL_X_POSITION 13400
-#define RL_PINDA_CAL_X_POSITION 1200
-#define RR_PINDA_CAL_X_POSITION 13400
-#define FL_PINDA_CAL_Y_POSITION 3500
-#define FR_PINDA_CAL_Y_POSITION 3500
-#define RL_PINDA_CAL_Y_POSITION 15000
-#define RR_PINDA_CAL_Y_POSITION 15000
+#define FL_PINDA_CAL_X_POSITION 2370 
+#define FR_PINDA_CAL_X_POSITION 26970
+#define RL_PINDA_CAL_X_POSITION 2370
+#define RR_PINDA_CAL_X_POSITION 26970
+#define FL_PINDA_CAL_Y_POSITION 2610
+#define FR_PINDA_CAL_Y_POSITION 2610
+#define RL_PINDA_CAL_Y_POSITION 27190
+#define RR_PINDA_CAL_Y_POSITION 27190
 
 //values to be adapted to pass the selftest
 #define AXIS_MARGIN 60
-#define Y_OFFSET 8
+#define Y_OFFSET 17
 
 //values for mesh bed leveling
 #define MESH_BED_X0_CS 2.f
 #define MESH_BED_Y0_CS 9.4f
-#define MESH_BED_XN_CS 138.f
-#define MESH_BED_YN_CS 173.4f
+#define MESH_BED_XN_CS 253.f
+#define MESH_BED_YN_CS 286.4f
 
 
 #define M600_TIMEOUT 600  //seconds
