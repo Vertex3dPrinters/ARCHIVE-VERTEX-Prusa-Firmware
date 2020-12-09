@@ -19,7 +19,8 @@
 #define DEVELOPER
 
 // Printer name
-#define CUSTOM_MENDEL_NAME "Prusa i3 MK3S"
+#define CUSTOM_MENDEL_NAME "VERTEX MK3S+ XL"
+#define ADAPTED_BY "vertex3d.org"
 
 // Electronics
 #define MOTHERBOARD BOARD_EINSY_1_0a
