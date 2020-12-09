@@ -247,7 +247,6 @@ void lay1cal_meander(char *cmd_buffer)
     enquecommand(cmd_buffer);
     sprintf_P(cmd_buffer, PSTR( "G1 X50 Y%-.2f E%-.3f"), posY5 , extrX_short2);
     enquecommand(cmd_buffer);
-
     sprintf_P(cmd_buffer, PSTR("G1 X50 Y35 E%-.3f"), extr);
     enquecommand(cmd_buffer);
 
