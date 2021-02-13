@@ -178,6 +178,8 @@ extern const char MSG_ADVANCE_K[];
 extern const char MSG_POWERPANIC_DETECTED[];
 extern const char MSG_LCD_STATUS_CHANGED[];
 
+
+extern const char MSG_COOLING_MESH[];
 #if defined(__cplusplus)
 }
 #endif //defined(__cplusplus)

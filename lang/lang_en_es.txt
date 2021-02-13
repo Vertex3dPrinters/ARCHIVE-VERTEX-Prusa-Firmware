@@ -66,6 +66,10 @@
 "Auto"
 "\x00"
 
+#MSG_COOLING_MESH c=20
+"Cooldown for mesh"
+"Enfriando para cal."
+
 #MSG_PRESS c=20 r=2
 "and press the knob"
 "Haz clic"
@@ -1469,4 +1473,3 @@
 #MSG_Z_PROBE_NR
 "Z-probe nr."
 "Z-sensor nr."
-
