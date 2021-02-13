@@ -1854,3 +1854,8 @@ msgstr "Z-sensor nr."
 #: messages.c:203
 msgid "Cooldown for mesh"
 msgstr "Enfriando para cal."
+
+# 
+#: util.cpp:624
+msgid "Check the steel sheet installed"
+msgstr "Chequea la lamina de acero"
