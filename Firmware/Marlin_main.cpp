@@ -5066,8 +5066,8 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
   {
     set170=true;
     eeprom_update_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND, target_temperature[active_extruder]);
-    lcd_setstatuspgm(MSG_COOLING_MESH);
-    lcd_update(2);
+    //lcd_setstatuspgm(MSG_COOLING_MESH);
+    //lcd_update(2);
     setTargetHotend(170,active_extruder);
     codenum = _millis();
     wait_for_heater(codenum, active_extruder);
@@ -5465,8 +5465,8 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
     {
       target_temperature[active_extruder] = eeprom_read_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND);
       setTargetHotend(target_temperature[active_extruder],active_extruder);
-      lcd_setstatuspgm(_T(MSG_HEATING));
-      lcd_update(2);
+      //lcd_setstatuspgm(_T(MSG_HEATING));
+      //lcd_update(2);
       codenum = _millis();
       wait_for_heater(codenum, active_extruder);
     }
