@@ -199,6 +199,8 @@ extern const char MSG_POWERPANIC_DETECTED[];
 extern const char MSG_LCD_STATUS_CHANGED[];
 extern const char MSG_FILE_SELECTED[];
 
+
+extern const char MSG_COOLING_MESH[];
 #if defined(__cplusplus)
 }
 #endif //defined(__cplusplus)

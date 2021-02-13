@@ -1850,3 +1850,7 @@ msgstr "Corregir-Z:"
 msgid "Z-probe nr."
 msgstr "Z-sensor nr."
 
+# MSG_COOLING_MESH
+#: messages.c:203
+msgid "Cooldown for mesh"
+msgstr "Enfriando para cal."

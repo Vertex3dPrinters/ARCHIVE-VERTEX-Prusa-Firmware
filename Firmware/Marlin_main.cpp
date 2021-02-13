@@ -438,6 +438,8 @@ public:
 
 AutoReportFeatures autoReportFeatures;
 
+bool set170 = false; //Cooling for mesh
+
 //===========================================================================
 //=============================Routines======================================
 //===========================================================================
@@ -5067,6 +5069,7 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
     set170=true;
     eeprom_update_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND, target_temperature[active_extruder]);
     //set_temp_mesh();
+    lcd_setstatuspgm(MSG_COOLING_MESH);
     setTargetHotend(170,active_extruder);
     codenum = _millis();
     wait_for_heater(codenum, active_extruder);
@@ -5460,6 +5463,14 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
 			current_position[E_AXIS] += default_retraction;
 			plan_buffer_line_curposXYZE(400);
 		}
+    if(set170)
+    {
+      target_temperature[active_extruder] = eeprom_read_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND);
+      setTargetHotend(target_temperature[active_extruder],active_extruder);
+      lcd_setstatuspgm(_T(MSG_HEATING));
+      codenum = _millis();
+      wait_for_heater(codenum, active_extruder);
+    }
 		KEEPALIVE_STATE(NOT_BUSY);
 		// Restore custom message state
 		lcd_setstatuspgm(_T(WELCOME_MSG));
@@ -5468,14 +5479,6 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
 		mesh_bed_leveling_flag = false;
 		mesh_bed_run_from_menu = false;
 		lcd_update(2);
-
-    if(set170)
-    {
-      target_temperature[active_extruder] = eeprom_read_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND);
-      setTargetHotend(target_temperature[active_extruder],active_extruder);
-      codenum = _millis();
-      wait_for_heater(codenum, active_extruder);
-    }
 	}
 	break;
 
