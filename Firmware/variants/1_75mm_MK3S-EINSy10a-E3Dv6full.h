@@ -19,7 +19,7 @@
 #define DEVELOPER
 
 // Printer name
-#define CUSTOM_MENDEL_NAME "VERTEX MK3S+ XL"
+#define CUSTOM_MENDEL_NAME "VERTEX MK3S+"
 #define ADAPTED_BY "vertex3d.org"
 
 // Electronics

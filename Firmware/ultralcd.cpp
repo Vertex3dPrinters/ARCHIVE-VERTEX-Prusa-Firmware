@@ -81,7 +81,7 @@ static uint8_t lcd_commands_step = 0;
 CustomMsg custom_message_type = CustomMsg::Status;
 unsigned int custom_message_state = 0;
 
-
+bool isPrintFinished = false;
 bool isPrintPaused = false;
 uint8_t farm_mode = 0;
 int farm_timer = 8;
@@ -6587,11 +6587,23 @@ static void lcd_sheet_menu()
 
 static void lcd_main_menu()
 {
-
-  MENU_BEGIN();
-
+ 
   // Majkl superawesome menu
 
+// if(isPrintFinished){
+// 		isP;rintFinished=false
+// 		if((lcd_show_fullscreen_message_yes_no_and_wait_P(PSTR("REPRINT?"),true,false))==1)
+//     	{
+// 			lcd_update_enable(true); 
+//             lcd_update(2); 
+//         	lcd_return_to_status();
+// 			reprint_from_eeprom();
+// 		}
+// }else
+// {
+// lcd_update_enable(true); 
+// lcd_update(2); 
+ MENU_BEGIN();
 
  MENU_ITEM_BACK_P(_T(MSG_WATCH));
 
@@ -6607,6 +6619,11 @@ static void lcd_main_menu()
  MENU_ITEM_FUNCTION_P(PSTR("power panic"), uvlo_);
 #endif //TMC2130_DEBUG
  
+  if ( (  !moves_planned() || !IS_SD_PRINTING || !is_usb_printing || !(lcd_commands_type == LcdCommands::Layer1Cal)) && isPrintFinished)
+  {
+	MENU_ITEM_SUBMENU_P(_i("Reprint"), reprint_from_eeprom);
+  }
+
   if ( ( IS_SD_PRINTING || is_usb_printing || (lcd_commands_type == LcdCommands::Layer1Cal)) && (current_position[Z_AXIS] < Z_HEIGHT_HIDE_LIVE_ADJUST_MENU) && !homing_flag && !mesh_bed_leveling_flag)
   {
 	MENU_ITEM_SUBMENU_P(_T(MSG_BABYSTEP_Z), lcd_babystep_z);//8
@@ -6751,8 +6768,8 @@ static void lcd_main_menu()
 #ifdef LCD_TEST
     MENU_ITEM_SUBMENU_P(_i("W25x20CL init"), lcd_test_menu);////MSG_SUPPORT
 #endif //LCD_TEST
-
   MENU_END();
+//}
 
 }
 
@@ -8693,11 +8710,48 @@ void lcd_finishstatus() {
 
 }
 
+void reprint_from_eeprom() {
+	char cmd[30];
+	char filename[13];
+	uint8_t depth = 0;
+	char dir_name[9];
+
+	isPrintFinished=false;
+
+	//cmdqueue_reset();
+
+	depth = eeprom_read_byte((uint8_t*)EEPROM_DIR_DEPTH);
+	
+	MYSERIAL.println(int(depth));
+	for (int i = 0; i < depth; i++) {
+		for (int j = 0; j < 8; j++) {
+			dir_name[j] = eeprom_read_byte((uint8_t*)EEPROM_DIRS + j + 8 * i);
+		}
+		dir_name[8] = '\0';
+		MYSERIAL.println(dir_name);
+		// strcpy(dir_names[i], dir_name);
+		card.chdir(dir_name, false);
+	}
+
+	for (int i = 0; i < 8; i++) {
+		filename[i] = eeprom_read_byte((uint8_t*)EEPROM_FILENAME + i);
+	}
+	filename[8] = '\0';
+
+	MYSERIAL.print(filename);
+	strcat_P(filename, PSTR(".gco"));
+	sprintf_P(cmd, PSTR("M23 %s"), filename);
+	enquecommand(cmd);
+  	sprintf_P(cmd, PSTR("M24"));
+	enquecommand(cmd);
+	lcd_return_to_status();
+}
+
 void lcd_setstatus(const char* message)
-{
-  if (lcd_status_message_level > 0)
-    return;
-  lcd_updatestatus(message);
+{ 
+	if (lcd_status_message_level > 0)
+   		return;
+	lcd_updatestatus(message);
 }
 
 void lcd_updatestatuspgm(const char *message){

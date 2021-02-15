@@ -659,6 +659,7 @@ void get_command()
       // cleared by printingHasFinished after peforming all remaining moves.
       if(!cmdqueue_calc_sd_length())
       {
+          isPrintFinished=true;
           SERIAL_PROTOCOLLNRPGM(_n("Done printing file"));////MSG_FILE_PRINTED
           stoptime=_millis();
           char time[30];
@@ -674,7 +675,7 @@ void get_command()
           lcd_setstatus(time);
           card.printingHasFinished();
           card.checkautostart(true);
-
+          
           if (farm_mode)
           {
               prusa_statistics(6);
