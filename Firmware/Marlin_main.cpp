@@ -842,7 +842,7 @@ int uart_putchar(char c, FILE *)
 void lcd_splash()
 {
 	lcd_clear(); // clears display and homes screen
-	lcd_puts_P(PSTR("\n   VERTEX MK3S XL\n    vertex3d.org"));
+	lcd_puts_P(PSTR("\n    VERTEX MK3S+\n    vertex3d.org"));
 }
 
 
@@ -5069,8 +5069,10 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
     //lcd_setstatuspgm(MSG_COOLING_MESH);
     //lcd_update(2);
     setTargetHotend(170,active_extruder);
+    fanSpeed=255;
     codenum = _millis();
     wait_for_heater(codenum, active_extruder);
+    fanSpeed=0;
   }
   else 
   {
