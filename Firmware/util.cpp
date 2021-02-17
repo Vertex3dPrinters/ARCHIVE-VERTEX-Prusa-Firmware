@@ -621,7 +621,7 @@ void steel_sheet_check()
         char sheet[8];
 	    eeprom_read_block(sheet, EEPROM_Sheets_base->s[sheetNR].name, 7);
 	    sheet[7] = '\0';
-        lcd_display_message_fullscreen_P(_i("Check the steel sheet installed"));
+        lcd_display_message_fullscreen_P(_T(MSG_CHECK_STEEL_SHEET));
         lcd_set_cursor(0,2);
         lcd_printf_P(PSTR("%-7s, Continue?"),sheet);
         if (!lcd_wait_for_click_delay(MSG_PRINT_CHECKING_FAILED_TIMEOUT))

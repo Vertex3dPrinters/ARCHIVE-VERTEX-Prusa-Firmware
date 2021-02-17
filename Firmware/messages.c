@@ -201,3 +201,4 @@ const char MSG_FILE_SELECTED[] PROGMEM_N1 = "File selected"; ////c=20
 
 //
 const char MSG_COOLING_MESH[] PROGMEM_I1 = ISTR("Cooldown for mesh"); ////c=20
+const char MSG_CHECK_STEEL_SHEET[] PROGMEM_I1 = ISTR("Check the steel sheet installed");

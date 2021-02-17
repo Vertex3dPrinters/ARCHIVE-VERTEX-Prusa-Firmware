@@ -201,6 +201,7 @@ extern const char MSG_FILE_SELECTED[];
 
 
 extern const char MSG_COOLING_MESH[];
+extern const char MSG_CHECK_STEEL_SHEET[];
 #if defined(__cplusplus)
 }
 #endif //defined(__cplusplus)
