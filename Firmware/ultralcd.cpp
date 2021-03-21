@@ -6622,7 +6622,7 @@ static void lcd_main_menu()
  MENU_ITEM_FUNCTION_P(PSTR("power panic"), uvlo_);
 #endif //TMC2130_DEBUG
  
-  if ( (  !moves_planned() || !IS_SD_PRINTING || !is_usb_printing || !(lcd_commands_type == LcdCommands::Layer1Cal)) && isPrintFinished)
+  if ( (!PRINTER_ACTIVE) && isPrintFinished)
   {
 	MENU_ITEM_SUBMENU_P(_i("Reprint"), reprint_from_eeprom);
   }
