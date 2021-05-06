@@ -157,7 +157,7 @@
 CardReader card;
 #endif
 
-bool set170 = false;
+//bool set170 = false;
 unsigned long PingTime = _millis();
 unsigned long NcTime;
 
@@ -842,7 +842,12 @@ int uart_putchar(char c, FILE *)
 void lcd_splash()
 {
 	lcd_clear(); // clears display and homes screen
-	lcd_puts_P(PSTR("\n    VERTEX MK3S+\n    vertex3d.org"));
+  if (PRINTER_TYPE == PRINTER_VERTEX_XL)
+  {
+	  lcd_puts_P(PSTR("\n     VERTEX  XL\n    vertex3d.org"));
+  }else{
+    lcd_puts_P(PSTR("\n    VERTEX MK3S+\n    vertex3d.org"));
+  }
 }
 
 
@@ -2284,6 +2289,9 @@ bool calibrate_z_auto()
 	if (PRINTER_TYPE == PRINTER_MK3) {
 		current_position[Z_AXIS] = Z_MAX_POS + 2.0;
 	}
+  else if (PRINTER_TYPE == PRINTER_VERTEX_XL) {
+    current_position[Z_AXIS] = Z_MAX_POS + 7.0;
+  }
 	else {
 		current_position[Z_AXIS] = Z_MAX_POS + 9.0;
 	}
@@ -5062,22 +5070,22 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
 #ifdef MK1BP
 		break;
 #endif //MK1BP
-  if (target_temperature[active_extruder]>0)
-  {
-    set170=true;
-    eeprom_update_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND, target_temperature[active_extruder]);
-    //lcd_setstatuspgm(MSG_COOLING_MESH);
-    //lcd_update(2);
-    setTargetHotend(170,active_extruder);
-    fanSpeed=255;
-    codenum = _millis();
-    wait_for_heater(codenum, active_extruder);
-    fanSpeed=0;
-  }
-  else 
-  {
-    set170=false;
-  }
+  // if (target_temperature[active_extruder]>0)
+  // {
+  //   set170=true;
+  //   eeprom_update_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND, target_temperature[active_extruder]);
+  //   //lcd_setstatuspgm(MSG_COOLING_MESH);
+  //   //lcd_update(2);
+  //   setTargetHotend(170,active_extruder);
+  //   fanSpeed=255;
+  //   codenum = _millis();
+  //   wait_for_heater(codenum, active_extruder);
+  //   fanSpeed=0;
+  // }
+  // else 
+  // {
+  //   set170=false;
+  // }
 	case_G80:
 	{
     mesh_bed_leveling_flag = true;
@@ -5463,15 +5471,15 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
 			current_position[E_AXIS] += default_retraction;
 			plan_buffer_line_curposXYZE(400);
 		}
-    if(set170)
-    {
-      target_temperature[active_extruder] = eeprom_read_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND);
-      setTargetHotend(target_temperature[active_extruder],active_extruder);
-      //lcd_setstatuspgm(_T(MSG_HEATING));
-      //lcd_update(2);
-      codenum = _millis();
-      wait_for_heater(codenum, active_extruder);
-    }
+    // if(set170)
+    // {
+    //   target_temperature[active_extruder] = eeprom_read_word((uint16_t*)EEPROM_UVLO_TARGET_HOTEND);
+    //   setTargetHotend(target_temperature[active_extruder],active_extruder);
+    //   //lcd_setstatuspgm(_T(MSG_HEATING));
+    //   //lcd_update(2);
+    //   codenum = _millis();
+    //   wait_for_heater(codenum, active_extruder);
+    // }
 		KEEPALIVE_STATE(NOT_BUSY);
 		// Restore custom message state
 		lcd_setstatuspgm(_T(WELCOME_MSG));

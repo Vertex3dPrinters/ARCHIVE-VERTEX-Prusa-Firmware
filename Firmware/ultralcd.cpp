@@ -4935,7 +4935,7 @@ void lcd_wizard(WizState state)
 			// Btw. the flag may even trigger the viper situation on normal start this way and the user won't be able to find out why.			
 			saved_printing = false;
 			
-			wizard_event = lcd_show_multiscreen_message_yes_no_and_wait_P(_i("Hi, I am your Original Prusa i3 printer. Would you like me to guide you through the setup process?"), false, true);////MSG_WIZARD_WELCOME c=20 r=7
+			wizard_event = lcd_show_multiscreen_message_yes_no_and_wait_P(_i("Hi, I am your Original Vertex printer. Would you like me to guide you through the setup process?"), false, true);////MSG_WIZARD_WELCOME c=20 r=7
 			if (wizard_event) {
 				state = S::Restore;
 				eeprom_update_byte((uint8_t*)EEPROM_WIZARD_ACTIVE, 1);

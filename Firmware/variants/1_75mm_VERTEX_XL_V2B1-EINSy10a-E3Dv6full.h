@@ -8,10 +8,10 @@
  *------------------------------------*/
 
 // Printer revision
-#define PRINTER_TYPE PRINTER_VERTEX_MK3S
-#define PRINTER_NAME PRINTER_VERTEX_MK3S_NAME
-#define PRINTER_MMU_TYPE PRINTER_VERTEX_MK3S_MMU2
-#define PRINTER_MMU_NAME PRINTER_VERTEX_MK3S_MMU2_NAME
+#define PRINTER_TYPE PRINTER_VERTEX_XL
+#define PRINTER_NAME PRINTER_VERTEX_XL_NAME
+#define PRINTER_MMU_TYPE PRINTER_VERTEX_XL_MMU2
+#define PRINTER_MMU_NAME PRINTER_VERTEX_XL_MMU2_NAME
 #define FILAMENT_SIZE "1_75mm_MK3"
 #define NOZZLE_TYPE "E3Dv6full"
 
@@ -19,7 +19,7 @@
 #define DEVELOPER
 
 // Printer name
-#define CUSTOM_MENDEL_NAME "VERTEX MK3S+"
+#define CUSTOM_MENDEL_NAME "VERTEX XL"
 #define ADAPTED_BY "vertex3d.org"
 
 // Electronics
@@ -66,11 +66,11 @@
 #define MANUAL_Z_HOME_POS 0.2
 
 // Travel limits after homing
-#define X_MAX_POS 255
+#define X_MAX_POS 302
 #define X_MIN_POS 0
-#define Y_MAX_POS 212.5
-#define Y_MIN_POS -4 //orig -4
-#define Z_MAX_POS 210
+#define Y_MAX_POS 311
+#define Y_MIN_POS -8 //orig -8
+#define Z_MAX_POS 425
 #define Z_MIN_POS 0.15
 
 // Canceled home position
@@ -93,7 +93,7 @@
 /**
  * [0,0] steel sheet print area point Y coordinate in bed print area coordinates
  */
-#define SHEET_PRINT_ZERO_REF_Y -2.f
+#define SHEET_PRINT_ZERO_REF_Y 5.5f
 
 #define DEFAULT_MAX_FEEDRATE                {200, 200, 12, 120}      // (mm/sec)   max feedrate (M203)
 #define DEFAULT_MAX_FEEDRATE_SILENT         {100, 100, 12, 120}      // (mm/sec)   max feedrate (M203), silent mode
@@ -102,8 +102,8 @@
 #define DEFAULT_MAX_ACCELERATION_SILENT     {960, 960, 200, 5000}    // (mm/sec^2) max acceleration (M201), silent mode
 
 
-#define DEFAULT_ACCELERATION          1250   // X, Y, Z and E max acceleration in mm/s^2 for printing moves (M204P)
-#define DEFAULT_RETRACT_ACCELERATION  1250   // X, Y, Z and E max acceleration in mm/s^2 for retracts (M204R)
+#define DEFAULT_ACCELERATION          1250   // X, Y, Z and E max acceleration in mm/s^2 for printing moves (M204S)
+#define DEFAULT_RETRACT_ACCELERATION  1250   // X, Y, Z and E max acceleration in mm/s^2 for retracts (M204T)
 #define DEFAULT_TRAVEL_ACCELERATION   1250   // X, Y, Z and E max acceleration in mm/s^2 for travels (M204T)
 
 #define MANUAL_FEEDRATE {2700, 2700, 1000, 100}   // set the speeds for manual moves (mm/min)
@@ -270,6 +270,7 @@
 #define TMC2130_CURRENTS_H {16, 20, 35, 30}  // default holding currents for all axes
 #define TMC2130_CURRENTS_R {16, 20, 35, 30}  // default running currents for all axes
 #define TMC2130_CURRENTS_R_HOME {8, 10, 20, 18}  // homing running currents for all axes
+// #define TMC2130_UNLOAD_CURRENT_R 12			 // lower current for M600 to protect filament sensor - Unused
 
 #define TMC2130_STEALTH_Z
 #define TMC2130_DEDGE_STEPPING
@@ -300,7 +301,6 @@
 #endif
 #define SUPERPINDA_SUPPORT
 #define PINDA_MINTEMP 10
-//#define PINDA_TEMP_COMP //Used to enable SuperPINDA toggle menu/function
 #define AMBIENT_MINTEMP -30
 
 // Maxtemps
@@ -420,9 +420,9 @@
 
 // Mesh definitions
 #define MESH_MIN_X 24
-#define MESH_MAX_X 228
+#define MESH_MAX_X 275
 #define MESH_MIN_Y 6
-#define MESH_MAX_Y 210
+#define MESH_MAX_Y 270
 
 // Mesh upsample definition
 #define MESH_NUM_X_POINTS 7
@@ -477,9 +477,9 @@
 #define  DEFAULT_bedKi 1.60
 #define  DEFAULT_bedKd 73.76
 #else
-#define  DEFAULT_bedKp 126.13
-#define  DEFAULT_bedKi 4.30
-#define  DEFAULT_bedKd 924.76
+#define  DEFAULT_bedKp 67.37
+#define  DEFAULT_bedKi 3.21
+#define  DEFAULT_bedKd 353.32
 #endif
 
 //120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
@@ -642,7 +642,38 @@
 // If power panic occured, and the current temperature is higher then target temperature before interrupt minus this offset, print will be recovered automatically.
 #define AUTOMATIC_UVLO_BED_TEMP_OFFSET 5 
 
-#define HEATBED_V2
+#define HEATBED_CS
+
+//float value from the edge of the bed until center of circle in mm, must be float
+#define FL_CAL_POINT_X_POSITION 38.5f 
+#define FR_CAL_POINT_X_POSITION 263.0f
+#define RL_CAL_POINT_X_POSITION 38.5f
+#define RR_CAL_POINT_X_POSITION 263.0f
+#define FL_CAL_POINT_Y_POSITION 34.3f
+#define FR_CAL_POINT_Y_POSITION 34.3f
+#define RL_CAL_POINT_Y_POSITION 289.0f
+#define RR_CAL_POINT_Y_POSITION 289.0f
+
+//values for pinda position over calibration points
+#define FL_PINDA_CAL_X_POSITION 1550
+#define FR_PINDA_CAL_X_POSITION 24000
+#define RL_PINDA_CAL_X_POSITION 1550
+#define RR_PINDA_CAL_X_POSITION 24000
+#define FL_PINDA_CAL_Y_POSITION 2930
+#define FR_PINDA_CAL_Y_POSITION 2930
+#define RL_PINDA_CAL_Y_POSITION 28400
+#define RR_PINDA_CAL_Y_POSITION 28400
+
+//values to be adapted to pass the selftest
+#define AXIS_MARGIN 60
+#define Y_OFFSET 8
+
+//values for mesh bed leveling
+#define MESH_BED_X0_CS 2.f
+#define MESH_BED_Y0_CS 9.4f
+#define MESH_BED_XN_CS 267.f
+#define MESH_BED_YN_CS 300.f
+
 
 #define M600_TIMEOUT 600  //seconds
 
